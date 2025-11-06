@@ -1,14 +1,14 @@
 import ConstruirMatriz
+import HashTable
 import string
 
 class NodoCluster:
 
-    def __init__(self, etiqueta = None, izq = None, der = None, distancia = 0.0, altura = 0.0):
+    def __init__(self, etiqueta = None, izq = None, der = None, distancia = 0.0):
         self.etiqueta = etiqueta
         self.izq = izq
         self.der = der
         self.distancia = distancia
-        self.altura = altura
 
 class WPGMA:
     def __init__(self, matriz):
@@ -17,11 +17,15 @@ class WPGMA:
         etiquetas = list(string.ascii_uppercase[:self.n])
         #Se crean los clusters a partir de las etiquetas: ["A", "B", "C", "D"...]
         self.cluster = []
-        for etiqueta in etiquetas:
-            nodo = NodoCluster(etiqueta = etiqueta, altura = 0.0)
-            self.cluster.append(nodo)
+        self.altura = HashTable.Hash(n = self.n * 2 - 1) #-> La cantidad máxima de clusters que se pueden generar son 2n -1
 
-        #self.altura = {etiqueta:0.0 for etiqueta in self.etiquetas} #Se crea un valor para cada etiqueta: {"A":0.0, "B":0.0", "C":0.0} -> Es un diccionario
+        for etiqueta in etiquetas:
+            nodo = NodoCluster(etiqueta = etiqueta)
+            self.cluster.append(nodo)
+            self.altura.insertar(nodo, 0.0) #Se crea un nodo para cada etiqueta: {"A":0.0, "B":0.0", "C":0.0} -> Es un HashTable
+        
+        
+
 
     def distanciaMin(self): #Encontramos los índices con menor valor dentro de la matriz
         minimo = 99999 #Un número muy grande
@@ -52,13 +56,15 @@ class WPGMA:
             nodoX = self.cluster[x]
             nodoY = self.cluster[y]
 
-            nodoX.distancia = menorDistancia/2 - nodoX.altura
-            nodoY.distancia = menorDistancia/2 - nodoY.altura
-
-            #nuevaCluster = f"({self.cluster[x]}:{menorDistancia/2-self.altura[self.cluster[x]]},{self.cluster[y]}:{menorDistancia/2-self.altura[self.cluster[y]]})" 
+            alturaX = self.altura.get(nodoX)
+            alturaY = self.altura.get(nodoY)
+            nodoX.distancia = menorDistancia/2 - alturaX
+            nodoY.distancia = menorDistancia/2 - alturaY
             
-            nuevoCluster = NodoCluster(izq = nodoX, der = nodoY, altura = menorDistancia/2)
+
+            nuevoCluster = NodoCluster(izq = nodoX, der = nodoY)
             self.cluster.append(nuevoCluster)
+            self.altura.insertar(nuevoCluster, menorDistancia/2)
 
             #Calculamos las distancias de los diferentes valores 
             DistanciasValores  = []
@@ -66,10 +72,6 @@ class WPGMA:
                 if i not in (x,y):
                     distancia = (self.matriz[x][i] + self.matriz[y][i])/2 #Se calculan las distancias, por ejemplo: (d(A,B) + d(A,D))/2 = d(A,(BD))  
                     DistanciasValores.append(distancia)
-
-            
-            
-
 
             #Actualizamos todos los valores con la lista de valores
             nuevaMatriz = [] #Se crea una matriz nueva
@@ -90,22 +92,19 @@ class WPGMA:
                 nuevaMatriz[indice].append(valor)
 
             nuevaMatriz.append(list(DistanciasValores) + [0.0])
-    
-            #ConstruirMatriz.imprimirMatriz(nuevaMatriz)
+            del DistanciasValores
+
             self.matriz = nuevaMatriz #Actualizamos para la nueva matriz
             self.n = len(nuevaMatriz) #Actualizamos el largo de la matriz
+
 
             del self.cluster[y]
             del self.cluster[x] #Eliminamos los cluster antiguos
             
             Nodo = self.cluster[0]
-            
-            for i in range(len(self.cluster)): #
-                print(self.cluster[i].etiqueta) #
 
 
-
-        return f"({self.retornarNewick(Nodo)})"
+        return f"({self.retornarNewick(Nodo.izq)},{self.retornarNewick(Nodo.der)});"
 
 otus = [
         "ATCG",
@@ -126,7 +125,16 @@ matrix =[
  [0.73, 0.80, 0.86, 0.75, 1]
 
 ]
-wpgma = WPGMA(matrix)
+
+distancia_matriz = [
+    [0.0, 0.2, 0.8, 0.9],
+    [0.2, 0.0, 0.7, 0.8],
+    [0.8, 0.7, 0.0, 0.3],
+    [0.9, 0.8, 0.3, 0.0]
+]
+
+
+wpgma = WPGMA(distancia_matriz)
 a = wpgma.wpgma() 
 print(a)
 

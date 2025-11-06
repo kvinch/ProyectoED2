@@ -28,8 +28,8 @@ class WPGMA:
             menorDistancia = self.matriz[x][y]
             #Se crea un nuevo cluster y se agrega a la
             nuevaCluster = f"({self.cluster[x]}:{menorDistancia/2-self.altura[self.cluster[x]]},{self.cluster[y]}:{menorDistancia/2-self.altura[self.cluster[y]]})" 
-            
-            
+            print(f"La altura x: {menorDistancia/2-self.altura[self.cluster[x]]}")
+            print(f"La altura y: {menorDistancia/2-self.altura[self.cluster[y]]}")
             self.cluster.append(nuevaCluster)
             #Calculamos las distancias de los diferentes valores 
             DistanciasValores  = []
