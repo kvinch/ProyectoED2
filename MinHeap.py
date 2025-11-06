@@ -1,3 +1,4 @@
+#Codigo adaptado de clase de Heaps en Python
 class MinHeap:
     def __init__(self):
         self.heap = []
