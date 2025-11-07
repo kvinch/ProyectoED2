@@ -107,13 +107,16 @@ class WPGMA:
         return f"({self.retornarNewick(Nodo.izq)},{self.retornarNewick(Nodo.der)});"
 
 otus = [
-        "ATCG",
-        "ATGG",
-        "TTGG",
-        "TCGG"
-    ]
+    "ATCGATCGATCGAT",
+    "ATCGATCGATCGAA",
+    "ATCGATCGATCAAA",
+    "ATCGATCGAACAAA",
+    "TACGTACGTACGTC",
+    "CATGTACGTACGTA"
+]
 
 matriz = ConstruirMatriz.construirMatriz(otus)
+ConstruirMatriz.imprimirMatriz(matriz)
 
 
 matrix =[
@@ -134,9 +137,10 @@ distancia_matriz = [
 ]
 
 
-wpgma = WPGMA(distancia_matriz)
+wpgma = WPGMA(matriz)
 a = wpgma.wpgma() 
 print(a)
+
 
 
 
