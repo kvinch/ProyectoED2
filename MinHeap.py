@@ -86,8 +86,20 @@ class MinHeap:
         for valor in self.heap:
             print(valor, end=" ")
         print("")
-
-# -------- Main function --------
+        
+    def extraerMin(self):
+            if not self.heap:
+                print("La lista está vacía!")
+                return -1
+            valorMin = self.heap[0]
+            self.heap[0] = self.heap[-1]
+            
+            self.heap.pop() #Se extrae el primer elemento del heap
+            
+            if self.heap: #Se arregla la propiedad del heap
+                self.heapifyDown(0)     
+            return valorMin #Retorna el valor
+    
 if __name__ == "__main__":
 
     heap = MinHeap()
