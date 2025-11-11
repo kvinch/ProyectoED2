@@ -33,6 +33,7 @@ Permite construir árboles evolutivos a partir de matrices de distancias mediant
   <img width="1098" height="695" alt="image" src="https://github.com/user-attachments/assets/6af64211-45a0-4c5d-b019-c0b9f104f4d7" />
 
 ## Estructura del proyecto 🦖
+```
 ProyectoED2/
 │
 ├── main.py
@@ -42,3 +43,4 @@ ProyectoED2/
 ├── ConstruirMatriz.py
 ├── requerimientos.txt
 └── README.md
+```
