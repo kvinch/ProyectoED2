@@ -1,15 +1,15 @@
-# Árboles filogenéticos utilizando el algoritmo WPGMA con diferentes estructuras de datos
+## Árboles filogenéticos utilizando el algoritmo WPGMA con diferentes estructuras de datos
 
-# Descripción 🕹️
+## Descripción 🕹️
 Este proyecto implementa algoritmos de **análisis filogenético** utilizando estructuras de datos como `MinHeap` y `HashTable`.  
 Permite construir árboles evolutivos a partir de matrices de distancias mediante el método **WPGMA**.
 
-# Instalación ⚙️
+## Instalación ⚙️
 1. Clona este repositorio con el comando: *git clone https://github.com/kvinch/ProyectoED2.git*.
 2. Entra a la carpeta del proyecto e instala los requerimientos (opcionales): *pip install -r requerimientos.txt*.
 3. Ejecuta el programa principal que está en main.py. Puedes cambiar las secuencias de OTUS de acuerdo a tu agraado.
 
-# Ejemplo 📄
+## Ejemplo 📄
 
 - Tienes unas secuencias de OTUS = ["ATCGATCGATCGAT",
     "ATCGATCGATCGAA",
@@ -32,7 +32,7 @@ Permite construir árboles evolutivos a partir de matrices de distancias mediant
 - Como paso opcional, se utilizaron librerías para que ayuden a la visualización del árbol filogenético a partir del newick resultante.
   <img width="1098" height="695" alt="image" src="https://github.com/user-attachments/assets/6af64211-45a0-4c5d-b019-c0b9f104f4d7" />
 
-# Estructura del proyecto 🦖
+## Estructura del proyecto 🦖
 ProyectoED2/
 │
 ├── main.py
