@@ -35,7 +35,7 @@ Permite construir árboles evolutivos a partir de matrices de distancias mediant
 
 ## Estructura del proyecto 🦖
 ```
-ProyectoED2/
+Phylogenetics-Tree-with-WPGMA-Algorithm/
 │
 ├── main.py
 ├── MinHeap.py
