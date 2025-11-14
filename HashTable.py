@@ -7,11 +7,15 @@ class Hash():
         self.bins = [[] for i in range(self.n)] #Chaining por si existen colisiones
     
     def FuncionHash(self, clave):
-        clave = str(id(clave))
-        h = 0
-        for letra in clave:
-            h = (h * 31 + ord(letra)) % self.n
-        return h
+        #clave = str(id(clave))
+        #h = 0
+        #for letra in clave:
+        #    h = (h * 31 + ord(letra)) % self.n
+        #return h
+
+        #Optimización del código de Función Hash, en vez de tener que recorrer todos los caracteres, que te retorne directamente el hash con el id de la clave
+        h = id(clave)
+        return h%self.n;
     
     def insertar(self, clave, nuevo_valor):
         indice = self.FuncionHash(clave)
