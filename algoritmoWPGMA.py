@@ -111,65 +111,6 @@ class WPGMA:
         else:
             return f"{self.retornarNewick(Nodo)};"
 
-otus = [
-    "ATCGATCGATCGAT",
-    "ATCGATCGATCGAA",
-    "ATCGATCGATCAAA",
-    "ATCGATCGAACAAA",
-    "TACGTACGTACGTC",
-    "CATGTACGTACGTA"
-]
-
-matriz = ConstruirMatriz.construirMatriz(otus)
-ConstruirMatriz.imprimirMatriz(matriz)
-
-
-matrix =[
-    
- [1,    0.82, 0.69, 0.78, 0.73],
- [0.82, 1,    0.78, 0.92, 0.80],
- [0.69, 0.78, 1,    0.80, 0.86],
- [0.78, 0.92, 0.80, 1,    0.75],
- [0.73, 0.80, 0.86, 0.75, 1]
-
-]
-
-distancia_matriz = [
-    [0.0, 0.2, 0.8, 0.9],
-    [0.2, 0.0, 0.7, 0.8],
-    [0.8, 0.7, 0.0, 0.3],
-    [0.9, 0.8, 0.3, 0.0]
-]
-
-mat = [
-	[0,17,	21,	31,	23],
-	[17,	0,	30,	34,	21],
-	[21,	30,	0,	28,	39]	,
-    [31,	34,	28,	0,	43],
-	[23,	21,	39,	43,	0]
-    ]
-
-wpgma = WPGMA(mat)
-a = wpgma.wpgma() 
-print(a)
-
-try:  #Intentamos importar las librerías necesarioas para la visualización
-	import io
-	from Bio import Phylo
-	import matplotlib.pyplot as plt
-	newick = io.StringIO(a)
-	tree = Phylo.read(newick, "newick")
-	fig = plt.figure(figsize=(10, 6), dpi=100)
-	axes = fig.add_subplot(1, 1, 1)
-	Phylo.draw(tree, axes=axes)
-	plt.show() #Muestra el gráfico en una ventana aparte
-except ImportError:  #Las librerías no están instaladas
-	print("No se puede visualizar, porque las librerías no están instaladas")
-
-
-
-
-
 
 
 
