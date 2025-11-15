@@ -1,3 +1,4 @@
+#Algoritmo como referencia adaptado de https://youtu.be/8J-QA82J8QU?si=hmc6opwoNRNOmNhH
 import ConstruirMatriz
 import MinHeap
 import HashTable
